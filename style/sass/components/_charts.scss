@@ -1,0 +1,11 @@
+@use "../global/global";
+
+.charts {
+  display: flex;
+  gap: 1rem;
+}
+
+.chart-div {
+    width: 450px;
+    height: 300px;
+}

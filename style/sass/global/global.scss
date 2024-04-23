@@ -1,0 +1,30 @@
+//Colors
+$temperatura: #dc2626;
+$umidade: #155e75;
+$nitrogenio: #d6d3d1;
+$cor: #172554;
+
+//Resetting global styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Montserrat", sans-serif;
+}
+
+section {
+    margin-left: 5rem;
+}
+
+h2 {
+    font-weight: 900;
+}
+
+.titulo {
+    font-weight: 700;
+    color: black;
+}
+
+
+

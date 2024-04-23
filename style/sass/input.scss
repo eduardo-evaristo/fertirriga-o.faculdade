@@ -1,0 +1,43 @@
+@use "global/global";
+@use "components/header";
+@use "components/dashboard-first";
+@use "components/dashboard-second";
+@use "components/dashboard-third";
+@use "components/charts";
+
+@media screen and (max-width: 768px) {
+    section {
+        grid-template-columns: 1fr;
+        margin: 1rem;
+        gap: 1rem;
+
+        .solo {
+            margin: 0;
+            gap: 2rem;
+        }
+    }
+
+    header {
+        top: auto;
+        bottom: 0;
+        height: 80px;
+        width: 100%;
+        
+        ul {
+            display: none;
+        }
+        
+    }
+
+    .charts {
+        flex-direction: column;
+
+        .chart-div {
+            width: 350px;
+            height: 300px;
+        }
+    }
+    
+}
+
+
