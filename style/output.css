@@ -167,6 +167,7 @@ section .outros .bloco {
 section .outros .dados2 {
   display: flex;
   gap: 1rem;
+  
 }
 section .outros .evapotranspiracao {
   background-color: #172554;
