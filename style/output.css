@@ -185,39 +185,31 @@ section .outros .temperatura-minima, section .outros .temperatura-maxima {
   height: 300px;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 768px) {
   section {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 1rem;
+    grid-template-columns: 1fr;
+    margin: 1rem;
+    gap: 1rem;
   }
   section .solo {
     margin: 0;
     gap: 2rem;
   }
-  section .ar {
-    margin: 2rem 0rem;
-  }
   header {
+    top: auto;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+  }
+  header ul {
     display: none;
   }
   .charts {
-    flex-direction: row;
-  }
-  .charts .chart-div1, .charts .chart-div2, .charts .chart-div3, .charts .chart-div4 {
-    width: 390px;
-    height: 350px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .charts {
     flex-direction: column;
-    margin: 0;
   }
-  .charts .chart-div1, .charts .chart-div2, .charts .chart-div3, .charts .chart-div4 {
-    width: 390px;
-    height: 350px;
+  .charts .chart-div {
+    width: 350px;
+    height: 300px;
   }
 }
 

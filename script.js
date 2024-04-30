@@ -10,6 +10,7 @@ var firebaseConfig = {
   appId: "1:730055975071:web:05d29a61d39dfcb53082aa",
   measurementId: "G-HXHPGYFWKZ",
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -18,14 +19,15 @@ const arrayInfo = [];
 $(document).ready(function () {
   var database = firebase.database();
 
-  var Temperatura = database.ref("Temperatura");
+  var TemperaturaSolo = database.ref("TemperaturaSolo");
+  var Temperatura = database.ref("Temperatura")
   var Precipitacao = database.ref("Precipitacao");
-  var Umidade = database.ref("Umidade");
+  var Umidade = database.ref("UmidadeSolo");
+  var UmidadeRelativa = database.ref("UmidadeRelativa");
   var Nitrogenio = database.ref("NPK/Nitrogenio");
   var Fosforo = database.ref("NPK/Fosforo");
   var Potassio = database.ref("NPK/Potassio");
   var Led1Status = database.ref("Led1Status");
-
 
   database.ref().on("value", function (snap) {
     Led1Status = snap.val().Led1Status;
@@ -38,46 +40,173 @@ $(document).ready(function () {
     }
   });
 
-  Temperatura.on("value", function (snap) {
-    var temperatura = snap.val();
-    document.querySelector(".valor-temperatura-solo").textContent = temperatura + " °C";
-    document.querySelector(".valor-temperatura-ar").textContent = temperatura + " °C";
-  });
-
-  Precipitacao.on("value", function (snap) {
-    var precipitacao = snap.val();
-    document.querySelector(".valor-precipitacao").textContent = precipitacao + " mm";
-  });
-
-  Umidade.on("value", function (snap) {
-    var umidade = snap.val();
-    document.querySelector(".valor-umidade-solo").textContent = umidade + "%";
-    document.querySelector(".valor-umidade-ar").textContent = umidade + "%";
-  });
-
-  Nitrogenio.on("value", function (snap) {
-    var nitrogenio = snap.val();
-    arrayInfo.push(nitrogenio);
-    document.querySelector(".valor-nitrogenio").textContent = nitrogenio;
-  });
-
-  Fosforo.on("value", function (snap) {
-    var fosforo = snap.val();
-    arrayInfo.push(fosforo);
-    document.querySelector(".valor-fosforo").textContent = fosforo;
-  });
-
-  Potassio.on("value", function (snap) {
-    var potassio = snap.val();
-    arrayInfo.push(potassio);
-    document.querySelector(".valor-potassio").textContent = potassio;
-  });
-
-  Led1Status.on("value", function (snap) {
-    var teste2 = snap.val();
-    document.querySelector(".data4-visor").textContent = teste2;
-  });
+  Promise.all([
+    fetchFirebaseData(TemperaturaSolo,"valor-temperatura-solo",),
+    fetchFirebaseData(Temperatura, "valor-temperatura-ar"),
+    fetchFirebaseData(Precipitacao, "valor-precipitacao"),
+    fetchFirebaseData(Umidade, "valor-umidade-solo"),
+    fetchFirebaseData(UmidadeRelativa, "valor-umidade-ar"),
+    fetchFirebaseData(Nitrogenio, "valor-nitrogenio"),
+    fetchFirebaseData(Fosforo, "valor-fosforo"),
+    fetchFirebaseData(Potassio, "valor-potassio"),
+  ]).then(renderCharts);
 });
 
+async function fetchFirebaseData(ref, ...classNames) {
+  return new Promise((resolve) => {
+    ref.on("value", function (snap) {
+      const data = snap.val();
+      if (classNames.length > 0) {
+        classNames.forEach((className) => {
+          document.querySelector(`.${className}`).textContent = data;
+        });
+      }
+      arrayInfo.push(data);
+      resolve();
+    });
+  });
+}
+
+const arrayTesteMensal = [];
+for (let i = 0; i <= 31; i++) {
+  let temperatura = Math.trunc(Math.random()* 50) + 1;
+  arrayTesteMensal.push(temperatura);
+}
+
+function renderCharts() {
+  const graficoTempSoloSemanal = document.getElementById("myChart");
+  const graficoTempArSemanal = document.getElementById("chart2");
+  const graficoTempArMensal = document.getElementById("chart3");
+  const graficoTempSoloMensal = document.getElementById("chart4");
+
+  const chart1 = document.querySelector(".chart-div1");
+  const chart2 = document.querySelector(".chart-div2");
+  const chart3 = document.querySelector(".chart-div3");
+  const chart4 = document.querySelector(".chart-div4");
+;
+  chart1.addEventListener("click", function() {
+    chart1.classList.toggle("hidden");
+    chart2.classList.toggle("hidden");
+  })
+  chart2.addEventListener("click", function () {
+    chart2.classList.toggle("hidden");
+    chart1.classList.toggle("hidden");
+  });
+
+  chart3.addEventListener("click", function () {
+    chart3.classList.toggle("hidden");
+    chart4.classList.toggle("hidden");
+  });
+  chart4.addEventListener("click", function () {
+    chart4.classList.toggle("hidden");
+    chart3.classList.toggle("hidden");
+  });
 
 
+
+  new Chart(graficoTempSoloSemanal, {
+    type: "bar",
+    data: {
+      labels: [
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Sábado",
+        "Domingo",
+      ],
+      datasets: [
+        {
+          label: "Temperatura do Solo - Semanal",
+          data: arrayInfo,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  new Chart(graficoTempArSemanal, {
+    type: "bar",
+    data: {
+      labels: [
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Sábado",
+        "Domingo",
+      ],
+      datasets: [
+        {
+          label: "Temperatura Relativa - Semanal",
+          data: arrayInfo,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  new Chart(graficoTempArMensal, {
+    type: "bar",
+    data: {
+      labels: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+      ],
+      datasets: [
+        {
+          label: "Temperatura Relativa - Mensal",
+          data: arrayTesteMensal,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  new Chart(graficoTempSoloMensal, {
+    type: "bar",
+    data: {
+      labels: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+      ],
+      datasets: [
+        {
+          label: "Temperatura do Solo - Mensal",
+          data: arrayTesteMensal,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}

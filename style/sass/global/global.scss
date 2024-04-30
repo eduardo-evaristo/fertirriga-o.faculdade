@@ -14,7 +14,7 @@ $cor: #172554;
 }
 
 section {
-    margin-left: 5rem;
+    //margin-left: 5rem;
 }
 
 h2 {
@@ -26,5 +26,8 @@ h2 {
     color: black;
 }
 
+.hidden {
+    display: none !important;
+}
 
 
