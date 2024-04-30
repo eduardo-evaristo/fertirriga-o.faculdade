@@ -6,10 +6,6 @@
   font-family: "Montserrat", sans-serif;
 }
 
-section {
-  margin-left: 5rem;
-}
-
 h2 {
   font-weight: 900;
 }
@@ -17,6 +13,10 @@ h2 {
 .titulo {
   font-weight: 700;
   color: black;
+}
+
+.hidden {
+  display: none !important;
 }
 
 header {
@@ -177,39 +177,63 @@ section .outros .temperatura-minima, section .outros .temperatura-maxima {
 
 .charts {
   display: flex;
+  margin: 1rem;
   gap: 1rem;
 }
 
-.chart-div {
-  width: 450px;
+.chart-div1 {
+  width: 480px;
   height: 300px;
 }
 
-@media screen and (max-width: 768px) {
+.chart-div2 {
+  width: 480px;
+  height: 300px;
+}
+
+.chart-div3 {
+  width: 480px;
+  height: 300px;
+}
+
+.chart-div4 {
+  width: 480px;
+  height: 300px;
+}
+
+@media screen and (max-width: 1300px) {
   section {
-    grid-template-columns: 1fr;
-    margin: 1rem;
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 1rem;
   }
   section .solo {
     margin: 0;
     gap: 2rem;
   }
-  header {
-    top: auto;
-    bottom: 0;
-    height: 80px;
-    width: 100%;
+  section .ar {
+    margin: 2rem 0rem;
   }
-  header ul {
+  header {
     display: none;
   }
   .charts {
-    flex-direction: column;
+    flex-direction: row;
   }
-  .charts .chart-div {
-    width: 350px;
-    height: 300px;
+  .charts .chart-div1, .charts .chart-div2, .charts .chart-div3, .charts .chart-div4 {
+    width: 390px;
+    height: 350px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .charts {
+    flex-direction: column;
+    margin: 0;
+  }
+  .charts .chart-div1, .charts .chart-div2, .charts .chart-div3, .charts .chart-div4 {
+    width: 390px;
+    height: 350px;
   }
 }
 

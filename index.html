@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <title>Fertirrigação</title>
     <link rel="stylesheet" href="style/output.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -17,6 +18,7 @@
 
 </head>
 <body>
+    <!--
     <header>
         <nav>
             <ul>
@@ -25,18 +27,19 @@
             </ul>
         </nav>
     </header>
+    -->
 
     <section>
         <div class="solo">
             <h1 class="titulo">Dados diários do solo</h1>
             <div class="'bloco dados2">
                 <div class="bloco temperatura">
-                    <h1><i class="fa-solid fa-temperature-half"></i></h1>
+                    <h1>Temperatura</h1>
                     <h2 class="valor-temperatura-solo">12</h2>
                 </div>
     
                 <div class="bloco umidade">
-                    <h1><i class='bx bx-water' ></i></h1>
+                    <h1>Umidade</h1>
                     <h2 class="valor-umidade-solo">12</h2>
                 </div>
             </div>
@@ -61,18 +64,18 @@
             <h1 class="titulo">Dados diários do ar</h1>
             <div class="'bloco dados2">
                 <div class="bloco temperatura">
-                    <h1><i class="fa-solid fa-temperature-half"></i></h1>
+                    <h1>Temperatura</h1>
                     <h2 class="valor-temperatura-ar">12</h2>
                 </div>
     
                 <div class="bloco umidade">
-                    <h1><i class='bx bx-water' ></i></h1>
+                    <h1>Umidade</h1>
                     <h2 class="valor-umidade-ar">12</h2>
                 </div>
             </div>
 
             <div class="bloco precipitacao">
-                    <h1><i class='bx bx-cloud-rain'></i></h1>
+                    <h1>Precipitação</h1>
                     <h2 class="valor-precipitacao">12</h2>
                 </div>
         </div>
@@ -105,17 +108,26 @@
     </section>
 
     <section class="charts">
-        <div class="chart-div">
+        <div class="chart-div1">
             <canvas id="myChart" class="chart"></canvas>
         </div>
 
-        <div class="chart-div">
+        <div class="chart-div2 hidden">
+            <canvas id="chart4" class="chart "></canvas>
+        </div>
+
+        <div class="chart-div3">
             <canvas id="chart2" class="chart"></canvas>
+        </div>
+
+        <div class="chart-div4 hidden">
+            <canvas id="chart3" class="chart"></canvas>
         </div>
     </section>
 
 
     <script src="script.js"></script>
-    <script src="charts.js"></script>
+    <script src="supabase.js"></script>
+    <!--<script src="charts.js"></script>-->
 </body>
 </html>
