@@ -237,6 +237,7 @@ section .outros .temperatura-minima, section .outros .temperatura-maxima {
   max-width: 400px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .login__container__label {
   font-weight: 800;
 }
