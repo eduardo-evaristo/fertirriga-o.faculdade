@@ -49,6 +49,7 @@ header nav li:hover {
 section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin-left: 5rem;
 }
 section .titulo {
   margin-bottom: 1rem;
@@ -68,7 +69,9 @@ section .solo .bloco {
   width: 70%;
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 section .solo .temperatura {
   background-color: #172554;
@@ -89,7 +92,9 @@ section .solo .blocos-npk .bloco-npk {
   width: 40%;
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 section .solo .blocos-npk .bloco-npk .titulo-npk {
   font-weight: 800;
@@ -132,7 +137,9 @@ section .ar .bloco {
   width: 70%;
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 section .ar .temperatura {
   background-color: #172554;
@@ -176,7 +183,9 @@ section .outros .bloco {
   width: 100%;
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 section .outros .dados2 {
   display: flex;
@@ -185,7 +194,8 @@ section .outros .dados2 {
 section .outros .evapotranspiracao {
   background-color: #172554;
 }
-section .outros .temperatura-minima, section .outros .temperatura-maxima {
+section .outros .temperatura-minima,
+section .outros .temperatura-maxima {
   background-color: #172554;
 }
 
@@ -289,7 +299,10 @@ section .outros .temperatura-minima, section .outros .temperatura-maxima {
   .charts {
     flex-direction: row;
   }
-  .charts .chart-div1, .charts .chart-div2, .charts .chart-div3, .charts .chart-div4 {
+  .charts .chart-div1,
+  .charts .chart-div2,
+  .charts .chart-div3,
+  .charts .chart-div4 {
     width: 390px;
     height: 350px;
   }
@@ -325,7 +338,10 @@ section .outros .temperatura-minima, section .outros .temperatura-maxima {
     flex-direction: column;
     margin: 0;
   }
-  .charts .chart-div1, .charts .chart-div2, .charts .chart-div3, .charts .chart-div4 {
+  .charts .chart-div1,
+  .charts .chart-div2,
+  .charts .chart-div3,
+  .charts .chart-div4 {
     width: 390px;
     height: 350px;
   }
