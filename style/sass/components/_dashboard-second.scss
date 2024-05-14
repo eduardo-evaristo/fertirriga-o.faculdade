@@ -1,46 +1,59 @@
 @use "../global/global";
 
 section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    
-    .ar {
-        display: flex;
-        flex-direction: column;
-        margin: 2rem 3rem 1rem 3rem ;
-        gap: 2rem;
-        text-align: center;
-        color: white;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-        .bloco {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 70%;
-            border-radius: 10px;
-            padding: 1rem;
-            box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;      
-        }
+  .titulo {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin: 1rem 0.5rem 2rem 0.5rem;
+    font-weight: 900;
+    border-radius: 10px;
+    background-color: rgb(251, 254, 254);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
 
-        .temperatura {
-            background-color: global.$cor;
-        }
+  .ar {
+    display: flex;
+    flex-direction: column;
+    margin: 2.6rem 3rem 1rem 3rem;
+    //gap: 2rem;
+    text-align: center;
+    color: white;
 
-        .umidade {
-            background-color: global.$cor; 
-        }
-
-        .dados2 {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .precipitacao {
-            margin-top: 2rem;
-            justify-content: space-between;
-            background-color: global.$cor; 
-            padding: 1rem;
-            width: 100%;
-        }
+    .bloco {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 70%;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px,
+        rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px,
+        rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px,
+        rgba(0, 0, 0, 0.07) 0px 32px 64px;
     }
+
+    .temperatura {
+      background-color: global.$cor;
+    }
+
+    .umidade {
+      background-color: global.$cor;
+    }
+
+    .dados2 {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .precipitacao {
+      margin-top: 2rem;
+      justify-content: space-between;
+      background-color: global.$cor;
+      padding: 1rem;
+      width: 100%;
+    }
+  }
 }

@@ -3,12 +3,16 @@
 section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
+    .titulo {
+        margin-bottom: 1rem;
+    }
     
     .solo {
         display: flex;
         flex-direction: column;
         margin: 2rem 3rem 1rem 3rem ;
-        gap: 2rem;
+        //gap: 2rem;
         text-align: center;
         justify-content: center;
         color: white;

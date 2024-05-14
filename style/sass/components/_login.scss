@@ -1,0 +1,48 @@
+@use "../global/global";
+
+.body__wrapper {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background-color: rgb(226, 212, 212);
+
+}
+
+.login__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: global.$cor;
+    gap: 1.5rem;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    &__label {
+        font-weight: 800;
+    }
+
+    &__input {
+        padding: 1rem;
+        border-radius: 10px;
+        outline: none;
+        border-style: none;
+        width: 80%;
+        font-weight: 600;
+    }
+
+    &__button {
+        padding: 1rem;
+        border-radius: 5px;
+        outline: none;
+        border-style: none;
+        font-weight: 800;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
+
+    }
+}

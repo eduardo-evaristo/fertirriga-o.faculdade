@@ -14,13 +14,25 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+let dia = new Date().getDate();
+let mes = new Date().getMonth() + 1;
+let ano = new Date().getFullYear();
+let data = `${dia} 0${mes} ${ano}`;
+console.log(data);
+var dailyCount = 0;
 const arrayInfo = [];
 
 $(document).ready(function () {
   var database = firebase.database();
 
+  // Retrieve the current dailyCount from Firebase
+  var dailyCountRef = database.ref(`DailyCount`);
+  dailyCountRef.once("value").then(function (snapshot) {
+    dailyCount = snapshot.val() || 0; // Initialize to 0 if the value does not exist
+  });
+
   var TemperaturaSolo = database.ref("TemperaturaSolo");
-  var Temperatura = database.ref("Temperatura")
+  var Temperatura = database.ref("Temperatura");
   var Precipitacao = database.ref("Precipitacao");
   var Umidade = database.ref("UmidadeSolo");
   var UmidadeRelativa = database.ref("UmidadeRelativa");
@@ -35,22 +47,133 @@ $(document).ready(function () {
       document.getElementById("unact").style.display = "none";
       document.getElementById("act").style.display = "block";
     } else {
-      document.getElementById("unact").style.display = "block";
-      document.getElementById("act").style.display = "none";
+      //document.getElementById("unact").style.display = "block";
+      //document.getElementById("act").style.display = "none";
     }
+
+    Promise.all([
+      fetchFirebaseData(TemperaturaSolo, "valor-temperatura-solo"),
+      fetchFirebaseData(Temperatura, "valor-temperatura-ar"),
+      fetchFirebaseData(Precipitacao, "valor-precipitacao"),
+      fetchFirebaseData(Umidade, "valor-umidade-solo"),
+      fetchFirebaseData(UmidadeRelativa, "valor-umidade-ar"),
+      fetchFirebaseData(Nitrogenio, "valor-nitrogenio"),
+      fetchFirebaseData(Fosforo, "valor-fosforo"),
+      fetchFirebaseData(Potassio, "valor-potassio"),
+    ]).then(renderCharts);
   });
 
-  Promise.all([
-    fetchFirebaseData(TemperaturaSolo,"valor-temperatura-solo",),
-    fetchFirebaseData(Temperatura, "valor-temperatura-ar"),
-    fetchFirebaseData(Precipitacao, "valor-precipitacao"),
-    fetchFirebaseData(Umidade, "valor-umidade-solo"),
-    fetchFirebaseData(UmidadeRelativa, "valor-umidade-ar"),
-    fetchFirebaseData(Nitrogenio, "valor-nitrogenio"),
-    fetchFirebaseData(Fosforo, "valor-fosforo"),
-    fetchFirebaseData(Potassio, "valor-potassio"),
-  ]).then(renderCharts);
+  //Valores adicionados ao nó de datas
+  var mudançaRef = database.ref("Mudança");
+
+  mudançaRef.on("value", function (snapshot) {
+    const mudança = snapshot.val();
+    if (mudança) {
+      dailyCount++; // Increment dailyCount
+      // Fetch values from the nodes
+      Promise.all([
+        TemperaturaSolo.once("value"),
+        Temperatura.once("value"),
+        Precipitacao.once("value"),
+        Umidade.once("value"),
+        UmidadeRelativa.once("value"),
+        Nitrogenio.once("value"),
+        Fosforo.once("value"),
+        Potassio.once("value"),
+      ])
+        .then(
+          ([
+            tempSoloSnap,
+            tempSnap,
+            precipSnap,
+            umidSoloSnap,
+            umidRelSnap,
+            nitrogenioSnap,
+            fosforoSnap,
+            potassioSnap,
+          ]) => {
+            const temperaturaSolo = tempSoloSnap.val();
+            const temperaturaAr = tempSnap.val();
+            const precipitacao = precipSnap.val();
+            const umidadeSolo = umidSoloSnap.val();
+            const umidadeAr = umidRelSnap.val();
+            const nitrogenio = nitrogenioSnap.val();
+            const fosforo = fosforoSnap.val();
+            const potassio = potassioSnap.val();
+
+            // Add data to Firebase under a new path
+            addContagem3(
+              temperaturaSolo,
+              temperaturaAr,
+              precipitacao,
+              umidadeSolo,
+              umidadeAr,
+              nitrogenio,
+              fosforo,
+              potassio
+            );
+          }
+        )
+        .then(() => {
+          // Update dailyCount in Firebase
+          dailyCountRef.set(dailyCount);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  });
 });
+
+
+async function fetchFirebaseData(ref, ...classNames) {
+  return new Promise((resolve) => {
+    ref.on("value", function (snap) {
+      const data = snap.val();
+      if (classNames.length > 0) {
+        classNames.forEach((className) => {
+          document.querySelector(`.${className}`).textContent = data;
+        });
+      }
+      arrayInfo.push(data);
+      resolve();
+    });
+  });
+}
+
+function addContagem3(
+  temperaturaSolo,
+  temperaturaAr,
+  precipitacao,
+  umidadeSolo,
+  umidadeAr,
+  nitrogenio,
+  fosforo,
+  potassio
+) {
+  const datePath = `Dados/${data}/Contagem${dailyCount}`;
+  const contagemData = {
+    TemperaturaSolo: temperaturaSolo,
+    TemperaturaAr: temperaturaAr,
+    Precipitacao: precipitacao,
+    UmidadeSolo: umidadeSolo,
+    UmidadeAr: umidadeAr,
+    Nitrogenio: nitrogenio,
+    Fosforo: fosforo,
+    Potassio: potassio,
+  };
+
+  firebase
+    .database()
+    .ref(datePath)
+    .set(contagemData)
+    .then(() => {
+      console.log(`Contagem${dailyCount} added succesfully!`);
+    })
+    .catch((error) => {
+      console.error(`Error adding Contagem${dailyCount}:`, error);
+    });
+}
 
 async function fetchFirebaseData(ref, ...classNames) {
   return new Promise((resolve) => {
@@ -69,7 +192,7 @@ async function fetchFirebaseData(ref, ...classNames) {
 
 const arrayTesteMensal = [];
 for (let i = 0; i <= 31; i++) {
-  let temperatura = Math.trunc(Math.random()* 50) + 1;
+  let temperatura = Math.trunc(Math.random() * 50) + 1;
   arrayTesteMensal.push(temperatura);
 }
 
@@ -83,11 +206,10 @@ function renderCharts() {
   const chart2 = document.querySelector(".chart-div2");
   const chart3 = document.querySelector(".chart-div3");
   const chart4 = document.querySelector(".chart-div4");
-;
-  chart1.addEventListener("click", function() {
+  chart1.addEventListener("click", function () {
     chart1.classList.toggle("hidden");
     chart2.classList.toggle("hidden");
-  })
+  });
   chart2.addEventListener("click", function () {
     chart2.classList.toggle("hidden");
     chart1.classList.toggle("hidden");
@@ -101,8 +223,6 @@ function renderCharts() {
     chart4.classList.toggle("hidden");
     chart3.classList.toggle("hidden");
   });
-
-
 
   new Chart(graficoTempSoloSemanal, {
     type: "bar",
