@@ -6,102 +6,111 @@
 @use "components/charts";
 @use "components/login";
 
+.section {
+  margin-left: 5rem;
+
+  .titulo {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin: 1rem 0.5rem 2rem 0.5rem;
+    font-weight: 900;
+    border-radius: 10px;
+    background-color: rgb(251, 254, 254);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
+
 @media screen and (max-width: 1300px) {
-    section {
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 1rem;
+  section {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 1rem;
 
-        .solo {
-            margin: 0;
-            //gap: 1rem;
-        }
-
-        .ar {
-            margin: 2rem 0rem;
-        }
-
-        .outros {
-            margin: 0rem 0rem 1rem 0rem ;
-            
-        }
-
-        .titulo {
-            padding: 1rem;
-            margin: 1rem 0.5rem 2rem 0.5rem;
-            font-weight: 900;
-            border-radius: 10px;
-            background-color: rgb(251, 254, 254);
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            
-        }
+    .solo {
+      margin: 0;
+      //gap: 1rem;
     }
 
-    header {
-        display: none;
-        
+    .ar {
+      margin: 2rem 0rem;
     }
 
-    .charts {
-        flex-direction: row;
-
-        .chart-div1, .chart-div2, .chart-div3, .chart-div4 {
-            width: 390px;
-            height: 350px;
-        }
+    .outros {
+      margin: 0rem 0rem 1rem 0rem;
     }
-    
+
+    .titulo {
+      padding: 1rem;
+      margin: 1rem 0.5rem 2rem 0.5rem;
+      font-weight: 900;
+      border-radius: 10px;
+      background-color: rgb(251, 254, 254);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+
+  header {
+    display: none;
+  }
+
+  .charts {
+    flex-direction: row;
+
+    .chart-div1,
+    .chart-div2,
+    .chart-div3,
+    .chart-div4 {
+      width: 390px;
+      height: 350px;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
-    section {
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 1rem;
+  section {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 1rem;
 
-        .solo {
-            margin: 0;
-            //gap: 1rem;
-        }
-
-        .ar {
-            margin: 2rem 0rem;
-        }
-
-        .outros {
-            margin: 0rem 0rem 1rem 0rem ;
-            
-        }
-
-        .titulo {
-            padding: 1rem;
-            margin: 1rem 0.5rem 2rem 0.5rem;
-            font-weight: 900;
-            border-radius: 10px;
-            background-color: rgb(251, 254, 254);
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            
-        }
+    .solo {
+      margin: 0;
+      //gap: 1rem;
     }
 
-    header {
-        display: none;
-        
+    .ar {
+      margin: 2rem 0rem;
     }
 
-    
-    .charts {
-        flex-direction: column;
-        margin: 0;
-
-        .chart-div1, .chart-div2, .chart-div3, .chart-div4 {
-            width: 390px;
-            height: 350px;
-        }
+    .outros {
+      margin: 0rem 0rem 1rem 0rem;
     }
-    
+
+    .titulo {
+      padding: 1rem;
+      margin: 1rem 0.5rem 2rem 0.5rem;
+      font-weight: 900;
+      border-radius: 10px;
+      background-color: rgb(251, 254, 254);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+
+  header {
+    display: none;
+  }
+
+  .charts {
+    flex-direction: column;
+    margin: 0;
+
+    .chart-div1,
+    .chart-div2,
+    .chart-div3,
+    .chart-div4 {
+      width: 390px;
+      height: 350px;
+    }
+  }
 }
-
-
