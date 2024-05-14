@@ -3,10 +3,6 @@
 section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
-    .titulo {
-        margin-bottom: 1rem;
-    }
     
     .solo {
         display: flex;

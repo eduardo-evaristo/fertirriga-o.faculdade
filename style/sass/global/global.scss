@@ -15,6 +15,16 @@ $cor: #172554;
 
 section {
     margin-left: 5rem;
+
+    .titulo {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin: 1rem 0.5rem 2rem 0.5rem;
+    font-weight: 900;
+    border-radius: 10px;
+    background-color: rgb(251, 254, 254);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
 }
 
 h2 {
